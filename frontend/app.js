@@ -1,5 +1,15 @@
 const API_BASE = "https://wasserstoff-aiinterntask-production-5a3d.up.railway.app";
 
+// 🔁 Reset the game on every page load
+window.addEventListener("load", async () => {
+  try {
+    await fetch(`${API_BASE}/reset`);
+    console.log("✅ Game session reset.");
+  } catch (err) {
+    console.error("⚠ Failed to reset game session on load:", err);
+  }
+});
+
 async function submitGuess() {
   const guess = document.getElementById("guessInput").value.trim();
   const persona = document.getElementById("persona").value;
