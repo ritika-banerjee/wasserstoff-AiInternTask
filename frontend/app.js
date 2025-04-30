@@ -30,6 +30,8 @@ async function submitGuess() {
     if (data.status === "success") {
       scoreDisplay.innerText = `Score: ${data.score}`;
       guessHistory.innerText = data.last_five.join(" → ");
+
+      // Extract global guess count from message
       const match = data.message.match(/has been guessed (\d+) times/i);
       if (match) {
         globalCount.innerText = `🌎 Global guess count: ${match[1]}`;
@@ -42,6 +44,6 @@ async function submitGuess() {
 
   } catch (err) {
     console.error(err);
-    responseMsg.innerText = "⚠️ Server error.";
+    responseMsg.innerText = "⚠ Server error.";
   }
 }
