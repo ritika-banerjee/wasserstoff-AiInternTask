@@ -15,6 +15,10 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="GenAI Guessing Game",lifespan=lifespan)
 
+
+# Include API routes
+app.include_router(router)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"], 
@@ -22,10 +26,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Include API routes
-app.include_router(router)
-
 # Serve static frontend
 frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend"))
 app.mount("/", StaticFiles(directory=frontend_path, html=True), name="static")
