@@ -1,4 +1,4 @@
-const API_BASE = "wasserstoff-aiinterntask-production-5a3d.up.railway.app";
+const API_BASE = "https://wasserstoff-aiinterntask-production-5a3d.up.railway.app";
 
 async function submitGuess() {
   const guess = document.getElementById("guessInput").value.trim();
