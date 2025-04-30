@@ -1,10 +1,14 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from backend.api.routes import router
 from backend.db.models import init_db
-from fastapi.staticfiles import StaticFiles
 import os
+from contextlib import asynccontextmanager
 
-init_db()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    init_db() 
+    yield 
 
 app = FastAPI(title="GenAI Guessing Game")
 
